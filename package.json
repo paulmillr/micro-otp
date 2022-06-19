@@ -43,6 +43,7 @@
   "keywords": [
     "OTP",
     "HOTP",
+    "TOTP",
     "one time passwords",
     "RFC6238"
   ],
