@@ -36,7 +36,7 @@ should('OTP url parser', () => {
   );
   assert.deepStrictEqual(
     otp.buildURL(otp.parse('ZYTYYE5FOAGW5ML7LRWUL4WTZLNJAMZS')),
-    'optauth://totp/?secret=ZYTYYE5FOAGW5ML7LRWUL4WTZLNJAMZS&interval=30&digits=6&algorithm=SHA1'
+    'otpauth://totp/?secret=ZYTYYE5FOAGW5ML7LRWUL4WTZLNJAMZS&interval=30&digits=6&algorithm=SHA1'
   );
   assert.deepStrictEqual(
     otp.buildURL(
@@ -44,7 +44,7 @@ should('OTP url parser', () => {
         'otpauth://totp/ACME%20Co:john@example.com?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&issuer=ACME%20Co&algorithm=SHA1&digits=6&period=30'
       )
     ),
-    'optauth://totp/?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&interval=30&digits=6&algorithm=SHA1'
+    'otpauth://totp/?secret=HXDMVJECJJWSRB3HWIZR4IFUGFTMXBOZ&interval=30&digits=6&algorithm=SHA1'
   );
 });
 should('OTP', () => {
@@ -79,9 +79,9 @@ should('OTP', () => {
   assert.deepStrictEqual(otp.hotp(optsRfc, 8), '399871');
   assert.deepStrictEqual(otp.hotp(optsRfc, 9), '520489');
   // https://datatracker.ietf.org/doc/html/rfc6238#appendix-B
-  /* 
+  /*
     There is something strange:
-    - Spec says vector should be "12345678901234567890" as hex (won't work for sha256/sha512), 
+    - Spec says vector should be "12345678901234567890" as hex (won't work for sha256/sha512),
       hovewer later in example code they use different keys for sha256/sha512 (with padding)
     - 1password doesn't pad (10 bytes secret with sha1 works as is, without padding)
     - https://github.com/pyauth/pyotp doesn't pad
