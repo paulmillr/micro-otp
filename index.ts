@@ -38,7 +38,7 @@ export function parse(otp: string): OTPOpts {
 }
 
 export function buildURL(opts: OTPOpts): string {
-  return `optauth://totp/?secret=${base32.encode(opts.secret).replace(/=/gm, '')}&interval=${
+  return `otpauth://totp/?secret=${base32.encode(opts.secret).replace(/=/gm, '')}&interval=${
     opts.interval
   }&digits=${opts.digits}&algorithm=${opts.algorithm.toUpperCase()}`;
 }
