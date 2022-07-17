@@ -1,7 +1,7 @@
-const assert = require('assert');
-const { should } = require('micro-should');
-const { hexToBytes } = require('@noble/hashes/utils');
-const otp = require('..');
+import assert from 'assert';
+import { should } from 'micro-should';
+import { hexToBytes } from '@noble/hashes/utils';
+import * as otp from './index.js';
 
 should('OTP url parser', () => {
   const INVALID = [
@@ -114,4 +114,4 @@ should('OTP', () => {
   assert.deepStrictEqual(otp.totp(optsRfc512, 20000000000 * 1000), '47863826');
 });
 
-if (require.main === module) should.run();
+should.run();
