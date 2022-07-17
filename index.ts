@@ -1,3 +1,4 @@
+/*! micro-otp - MIT License (c) 2022 Paul Miller (paulmillr.com) */
 import { base32 } from '@scure/base';
 import { sha1 } from '@noble/hashes/sha1';
 import { sha256 } from '@noble/hashes/sha256';
