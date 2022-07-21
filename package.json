@@ -1,6 +1,6 @@
 {
   "name": "micro-otp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "One Time Password generation via RFC 6238",
   "files": [
     "index.js",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@noble/hashes": "~1.1.1",
     "@scure/base": "~1.1.0",
-    "micro-packed": "~0.1.0"
+    "micro-packed": "~0.2.0"
   },
   "devDependencies": {
     "micro-should": "0.2.0",
