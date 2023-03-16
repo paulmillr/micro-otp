@@ -1,6 +1,6 @@
 {
   "name": "micro-otp",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "One Time Password generation via RFC 6238",
   "files": [
     "index.js",
