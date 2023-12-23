@@ -1,10 +1,9 @@
 /*! micro-otp - MIT License (c) 2022 Paul Miller (paulmillr.com) */
-import { base32 } from '@scure/base';
-import { sha1 } from '@noble/hashes/sha1';
-import { sha256 } from '@noble/hashes/sha256';
-import { sha512 } from '@noble/hashes/sha512';
 import { hmac } from '@noble/hashes/hmac';
-import * as P from 'micro-packed';
+import { sha1 } from '@noble/hashes/sha1';
+import { sha256, sha512 } from '@noble/hashes/sha2';
+import { base32 } from '@scure/base';
+import { U32BE, U64BE } from 'micro-packed';
 
 export type Bytes = Uint8Array;
 
@@ -16,6 +15,9 @@ function parseSecret(secret: string) {
 export function parse(otp: string): OTPOpts {
   const opts = { secret: new Uint8Array(), algorithm: 'sha1', digits: 6, interval: 30 };
   if (otp.startsWith('otpauth://totp/')) {
+    // @ts-ignore
+    if (typeof URL === 'undefined') throw new Error('global variable URL must be defined');
+    // @ts-ignore
     const url = new URL(otp);
     if (url.protocol !== 'otpauth:' || url.host !== 'totp') throw new Error('OTP: wrong url');
     const params = url.searchParams;
@@ -47,9 +49,9 @@ export function buildURL(opts: OTPOpts): string {
 export function hotp(opts: OTPOpts, counter: number | bigint) {
   const hash = { sha1, sha256, sha512 }[opts.algorithm];
   if (!hash) throw new Error(`TOTP: unknown hash: ${opts.algorithm}`);
-  const mac = hmac(hash, opts.secret, P.U64BE.encode(BigInt(counter)));
-  const offset = mac[mac.length - 1] & 0x0f;
-  const num = P.U32BE.decode(mac.slice(offset, offset + 4)) & 0x7fffffff;
+  const mac = hmac(hash, opts.secret, U64BE.encode(BigInt(counter)));
+  const offset = mac[mac.length - 1]! & 0x0f;
+  const num = U32BE.decode(mac.slice(offset, offset + 4)) & 0x7fffffff;
   return num.toString().slice(-opts.digits).padStart(opts.digits, '0');
 }
 
