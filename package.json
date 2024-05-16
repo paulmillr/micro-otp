@@ -2,12 +2,7 @@
   "name": "micro-otp",
   "version": "0.2.5",
   "description": "One Time Password generation via RFC 6238",
-  "files": [
-    "index.js",
-    "index.d.ts",
-    "index.d.ts.map",
-    "index.ts"
-  ],
+  "files": ["index.js", "index.d.ts", "index.d.ts.map", "index.ts"],
   "type": "module",
   "main": "index.js",
   "module": "index.js",
@@ -20,7 +15,7 @@
   "dependencies": {
     "@noble/hashes": "~1.4.0",
     "@scure/base": "~1.1.6",
-    "micro-packed": "~0.5.3"
+    "micro-packed": "~0.6.1"
   },
   "devDependencies": {
     "@paulmillr/jsbt": "0.1.0",
@@ -41,12 +36,6 @@
     "type": "git",
     "url": "git+https://github.com/paulmillr/micro-otp.git"
   },
-  "keywords": [
-    "OTP",
-    "HOTP",
-    "TOTP",
-    "one time passwords",
-    "RFC6238"
-  ],
+  "keywords": ["OTP", "HOTP", "TOTP", "one time passwords", "RFC6238"],
   "funding": "https://paulmillr.com/funding/"
 }
