@@ -1,12 +1,14 @@
 # micro-otp
 
-One Time Password generation via [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238).
+> [!WARNING]  
+> The repository has been merged into [micro-key-producer](https://github.com/paulmillr/micro-key-producer). Please head to the new repo for updates.
 
-## Switch to [micro-key-producer](https://github.com/paulmillr/micro-key-producer)
-
-The package has been integrated into micro-key-producer. It is now deprecated.
+    npm install micro-key-producer
 
 ---
+
+One Time Password generation via [RFC 6238](https://datatracker.ietf.org/doc/html/rfc6238).
+
 
 ```ts
 import * as otp from 'micro-otp';
